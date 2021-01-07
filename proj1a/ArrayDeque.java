@@ -94,6 +94,7 @@ public class ArrayDeque<T> {
     public T get(int index) {
         if (index >= size)
             return null;
+        index = (nextFirst + 1 + index) % capacity;
         return items[index];
     }
 

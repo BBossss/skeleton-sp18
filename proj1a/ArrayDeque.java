@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    public void resize(int capacity) {
+    private void resize(int capacity) {
         this.capacity = capacity;
         T[] newArray = (T[]) new Object[capacity];
         if (nextFirst >= nextLast) {

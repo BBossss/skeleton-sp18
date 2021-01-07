@@ -1,5 +1,5 @@
 public class LinkedListDeque<T> {
-    public class Node {
+    private class Node {
         public Node prev;
         public T item;
         public Node next;
@@ -101,7 +101,7 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(index, sentinel.next);
     }
 
-    public T getRecursiveHelper(int index, Node node) {
+    private T getRecursiveHelper(int index, Node node) {
         if (index == 0)
             return node.item;
         return getRecursiveHelper(--index, node.next);

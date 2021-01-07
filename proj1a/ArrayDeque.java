@@ -63,20 +63,32 @@ public class ArrayDeque<T> {
         }
     }
 
+    private double usageRatio() {
+        return size * 1.0 / capacity;
+    }
+
     public T removeFirst() {
         if (isEmpty())
             return null;
         nextFirst = (nextFirst + 1) % capacity;
+        T rst = items[nextFirst];
         size--;
-        return items[nextFirst];
+        if (usageRatio() < 0.25) {
+            resize(capacity / 2);
+        }
+        return rst;
     }
 
     public T removeLast() {
         if (isEmpty())
             return null;
         nextLast = (nextLast - 1 + capacity) % capacity;
+        T rst = items[nextLast];
         size--;
-        return items[nextLast];
+        if (usageRatio() < 0.25) {
+            resize(capacity / 2);
+        }
+        return rst;
     }
 
     public T get(int index) {

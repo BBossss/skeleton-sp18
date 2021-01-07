@@ -4,7 +4,7 @@ public class LinkedListDeque<T> {
         public T item;
         public Node next;
 
-        public Node(T i,Node f, Node s) {
+        public Node(T i, Node f, Node s) {
             item = i;
             prev = f;
             next = s;
@@ -15,7 +15,7 @@ public class LinkedListDeque<T> {
     private int size;
 
     public LinkedListDeque() {
-        sentinel = new Node((T)new Object(), null, null);
+        sentinel = new Node((T) new Object(), null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;

@@ -99,13 +99,4 @@ public class ArrayDeque<T> {
         return items[index];
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> ad = new ArrayDeque<>();
-        for (int i = 0; i < 10; i++) {
-            ad.addLast(i);
-        }
-        for (int i = 0; i < 10; i++) {
-            ad.removeLast();
-        }
-    }
 }

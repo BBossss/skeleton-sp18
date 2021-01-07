@@ -14,11 +14,12 @@ public class ArrayDeque<T> {
     }
 
     private void resize(int capacity) {
+        int originalCap = this.capacity;
         this.capacity = capacity;
         T[] newArray = (T[]) new Object[capacity];
         if (nextFirst >= nextLast) {
-            System.arraycopy(items, nextFirst + 1, newArray, 0, size - nextFirst);
-            System.arraycopy(items, 0, newArray, size - nextFirst, nextLast);
+            System.arraycopy(items, nextFirst + 1, newArray, 0, originalCap - nextFirst - 1);
+            System.arraycopy(items, 0, newArray, originalCap - nextFirst - 1, nextLast);
         } else {
             System.arraycopy(items, nextFirst + 1, newArray, 0, nextLast - nextFirst - 1);
         }
@@ -98,4 +99,13 @@ public class ArrayDeque<T> {
         return items[index];
     }
 
+    public static void main(String[] args) {
+        ArrayDeque<Integer> ad = new ArrayDeque<>();
+        for (int i = 0; i < 10; i++) {
+            ad.addLast(i);
+        }
+        for (int i = 0; i < 10; i++) {
+            ad.removeLast();
+        }
+    }
 }

@@ -4,7 +4,7 @@ import edu.princeton.cs.introcs.StdRandom;
 import edu.princeton.cs.introcs.StdStats;
 
 public class PercolationStats {
-    private int[] xs;
+    private double[] xs;
     private int T;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
@@ -26,7 +26,7 @@ public class PercolationStats {
                 }
                 p.open(row, col);
             }
-            xs[i] = t;
+            xs[i] = t / N * N * 1.0;
         }
     }
 

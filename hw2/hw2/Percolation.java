@@ -98,6 +98,9 @@ public class Percolation {
             }
         }
         return false;*/
+        if (N == 1 && !isOpen(0, 0)) {
+            return false;
+        }
 
         return wqu.connected(N * N, N * N + 1);
     }

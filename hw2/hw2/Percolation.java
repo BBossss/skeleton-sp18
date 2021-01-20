@@ -57,6 +57,9 @@ public class Percolation {
         if (isIndexOutOfBound(row, col)) {
             throw new java.lang.IndexOutOfBoundsException();
         }
+        if (isOpen(row, col)) {
+            return ;
+        }
         grids[row][col] = true;
         unionAround(row, col);
         numberOfOpenSites += 1;

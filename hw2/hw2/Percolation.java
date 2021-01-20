@@ -101,4 +101,8 @@ public class Percolation {
 
         return wqu.connected(N * N, N * N + 1);
     }
+
+    public static void main(String[] args) {
+
+    }
 }

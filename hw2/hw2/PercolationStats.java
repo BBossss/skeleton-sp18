@@ -4,8 +4,9 @@ import edu.princeton.cs.introcs.StdRandom;
 import edu.princeton.cs.introcs.StdStats;
 
 public class PercolationStats {
-    int[] xs;
-    int T;
+    private int[] xs;
+    private int T;
+
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (N <= 0 || T <= 0) {
             throw new IllegalArgumentException();
@@ -43,16 +44,5 @@ public class PercolationStats {
 
     public double confidenceHigh() {
         return mean() + 1.96 * stddev() / Math.sqrt(T);
-    }
-
-    public static void main(String[] args) {
-        PercolationStats ps = new PercolationStats(5, 100, new PercolationFactory());
-        for (int i = 0; i < ps.T; i++) {
-            System.out.print(ps.xs[i] + " ");
-        }
-        System.out.println();
-        System.out.println(ps.mean());
-        System.out.println(ps.stddev());
-        System.out.println("[" + ps.confidenceLow() + ", " + ps.confidenceHigh() + "]");
     }
 }

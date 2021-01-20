@@ -1,5 +1,58 @@
 package hw2;
 
-public class PercolationStats {
+import edu.princeton.cs.introcs.StdRandom;
+import edu.princeton.cs.introcs.StdStats;
 
+public class PercolationStats {
+    int[] xs;
+    int T;
+    public PercolationStats(int N, int T, PercolationFactory pf) {
+        if (N <= 0 || T <= 0) {
+            throw new IllegalArgumentException();
+        }
+        xs = new int[T];
+        this.T = T;
+        for (int i = 0; i < T; i++) {
+            Percolation p = pf.make(N);
+            int t = 0;
+            while (!p.percolates()) {
+                t++;
+                int row = StdRandom.uniform(N);
+                int col = StdRandom.uniform(N);
+                while (p.isOpen(row, col)) {
+                    row = StdRandom.uniform(N);
+                    col = StdRandom.uniform(N);
+                }
+                p.open(row, col);
+            }
+            xs[i] = t;
+        }
+    }
+
+    public double mean() {
+        return StdStats.mean(xs);
+    }
+
+    public double stddev() {
+        return StdStats.stddev(xs);
+    }
+
+    public double confidenceLow() {
+        return mean() - 1.96 * stddev() / Math.sqrt(T);
+    }
+
+    public double confidenceHigh() {
+        return mean() + 1.96 * stddev() / Math.sqrt(T);
+    }
+
+    public static void main(String[] args) {
+        PercolationStats ps = new PercolationStats(5, 100, new PercolationFactory());
+        for (int i = 0; i < ps.T; i++) {
+            System.out.print(ps.xs[i] + " ");
+        }
+        System.out.println();
+        System.out.println(ps.mean());
+        System.out.println(ps.stddev());
+        System.out.println("[" + ps.confidenceLow() + ", " + ps.confidenceHigh() + "]");
+    }
 }
